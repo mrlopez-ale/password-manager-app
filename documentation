@@ -1,0 +1,139 @@
+Local Password Manager - Code Documentation
+This document describes the Python code for a local password manager application. The application allows users to generate strong passwords and securely store them on their local machine.
+
+1. Overview
+The application encrypts and stores website-password pairs in a local file (passwords.dat). The encryption key is derived from a master password provided by the user. The application provides functionalities to:
+
+Generate strong, customizable passwords.
+
+Add new website-password entries to the encrypted storage.
+
+Retrieve passwords for specific websites.
+
+Provides a basic GUI
+
+2. File Structure
+password_manager.py: The main Python script.
+
+passwords.dat: (Automatically created)  A local file where encrypted password data is stored.
+
+3. Modules
+The script uses the following Python modules:
+
+os:  For operating system interactions (e.g., file existence checks).
+
+getpass:  (Replaced by tkinter.simpledialog in the GUI version) For secure password input in the CLI.
+
+hashlib: For hashing algorithms (SHA256).
+
+base64:  For encoding/decoding binary data.
+
+random: For generating random data (for passwords).
+
+string:  For string constants (character sets).
+
+tkinter: For the GUI.
+
+tkinter.messagebox: For displaying message boxes.
+
+tkinter.simpledialog: For simple input dialogs.
+
+cryptography.fernet: For symmetric encryption (AES-256).
+
+cryptography.hazmat.primitives:  Cryptographic primitives.
+
+cryptography.hazmat.primitives.hashes: Hash algorithms.
+
+cryptography.hazmat.primitives.kdf.pbkdf2:  PBKDF2HMAC key derivation function.
+
+cryptography.hazmat.backends:  Cryptographic backend.
+
+4. Functions
+4.1. generate_password(length=12, include_uppercase=True, include_lowercase=True, include_numbers=True, include_symbols=True)
+Generates a random password.
+
+Parameters:
+
+length (int): Password length (default: 12).
+
+include_uppercase (bool): Include uppercase (default: True).
+
+include_lowercase (bool): Include lowercase (default: True).
+
+include_numbers (bool): Include numbers (default: True).
+
+include_symbols (bool): Include symbols (default: True).
+
+Returns:
+
+str: The generated password, or an error message.
+
+4.2. _derive_key(password, salt)
+Derives an encryption key from a master password and salt using PBKDF2HMAC.
+
+Parameters:
+
+password (str): The master password.
+
+salt (bytes): The salt.
+
+Returns:
+
+bytes: The derived encryption key (32 bytes).
+
+4.3. _load_key()
+Loads the encryption key from the passwords.dat file or creates it if the file doesn't exist.
+
+Returns:
+
+Fernet: A Fernet object (encryption key), or None on error.
+
+4.4. add_password(fernet_key, website, password)
+Encrypts and stores a website-password pair.
+
+Parameters:
+
+fernet_key (Fernet): The encryption key.
+
+website (str): The website name.
+
+password (str): The password.
+
+4.5. get_password(fernet_key, website)
+Retrieves the password for a given website.
+
+Parameters:
+
+fernet_key (Fernet): The encryption key.
+
+website (str): The website name.
+
+4.6. show_generate_dialog(fernet_key)
+Displays a dialog for generating passwords.
+
+Parameters:
+
+fernet_key (Fernet): The encryption key.
+
+4.7 show_add_dialog(fernet_key)
+Displays dialog to add a new password.
+
+Parameters:
+
+fernet_key (Fernet): The encryption key.
+
+4.8 show_get_dialog(fernet_key)
+Displays dialog to get a password.
+
+Parameters:
+
+fernet_key (Fernet): The encryption key.
+
+5. Main Execution Block (if __name__ == "__main__":)
+Creates the main Tkinter window.
+
+Loads the encryption key using _load_key().
+
+Creates buttons for password generation, adding, and retrieval.
+
+Starts the Tkinter main loop.
