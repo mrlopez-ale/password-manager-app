@@ -8,3 +8,5 @@ Generate strong, customizable passwords.
 Add new website-password entries to the encrypted storage.
 Retrieve passwords for specific websites.
 The GUI provides a user-friendly way to interact with these functionalities.
+
+https://mrlopez-ale.notion.site/Documentation-for-Local-Password-Manager-1d911122ac1d80dca6cde488969da229?pvs=4
