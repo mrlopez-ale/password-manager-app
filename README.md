@@ -1,4 +1,5 @@
 # Local Password Manager - APP
+Linkedin: https://www.linkedin.com/in/mr-lopeza/
 
 This document provides a description of the Python code for a local password manager application. The application allows users to generate strong passwords and securely store them on their local machine using AES-256 encryption. It features a basic Graphical User Interface (GUI) built with Tkinter.
 
